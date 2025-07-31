@@ -1,8 +1,8 @@
-"use client"
+'use client'
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image'
-// Мок-данные для проектов
+import Image from 'next/image';
+
 const projects = [
     {
         id: 1,
@@ -54,7 +54,6 @@ const projects = [
 const ProjectCard = ({ project, index }) => {
     const [activeImage, setActiveImage] = useState(0);
 
-    // Чередование фона: четные - белый, нечетные - черный
     const bgColor = index % 2 === 0 ? 'bg-white text-black' : 'bg-black text-white';
     const accentColor = index % 2 === 0 ? 'text-blue-600' : 'text-blue-400';
     const buttonStyle = index % 2 === 0
@@ -62,58 +61,135 @@ const ProjectCard = ({ project, index }) => {
         : 'bg-blue-400 hover:bg-blue-500 text-black';
 
     return (
-        <div className={`${bgColor} py-16 px-4 md:px-0`}>
+        <motion.div
+            className={`${bgColor} py-16 px-4 md:px-0`}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: index * 0.1 }}
+            viewport={{ once: true, margin: "-100px" }}
+        >
             <div className="container mx-auto max-w-6xl">
                 <div className="flex flex-col md:flex-row gap-8 md:gap-12">
-                    {/* Галерея */}
-                    <div className="md:w-1/2">
+                    {/* Галерея с улучшенными анимациями */}
+                    <motion.div
+                        className="md:w-1/2"
+                        initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        viewport={{ once: true }}
+                    >
                         <div className="relative">
-                            <motion.img
+                            <motion.div
                                 key={activeImage}
-                                src={project.images[activeImage]}
-                                alt={project.title}
-                                className="w-full h-80 md:h-96 object-cover rounded-xl shadow-xl"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.5 }}
-                            />
+                                className="relative h-80 md:h-96"
+                            >
+                                <Image
+                                    src={project.images[activeImage]}
+                                    alt={project.title}
+                                    fill
+                                    className="object-cover rounded-xl shadow-xl"
+                                    priority={index === 0}
+                                />
+                            </motion.div>
 
-                            {/* Миниатюры */}
-                            <div className="flex mt-4 space-x-2 overflow-x-auto pb-2">
+                            {/* Миниатюры с анимацией */}
+                            <motion.div
+                                className="flex mt-4 space-x-2 overflow-x-auto pb-2"
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                transition={{ delay: 0.4 }}
+                                viewport={{ once: true }}
+                            >
                                 {project.images.map((img, idx) => (
                                     <motion.div
                                         key={idx}
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: 0.1 * idx }}
                                     >
-                                        <img
+                                        <Image
                                             src={img}
                                             alt={`Thumbnail ${idx}`}
-                                            className={`w-16 h-16 object-cover rounded cursor-pointer transition-all ${
+                                            width={64}
+                                            height={64}
+                                            className={`object-cover rounded cursor-pointer transition-all ${
                                                 activeImage === idx ? 'ring-2 ring-blue-500 scale-105' : 'opacity-70'
                                             }`}
                                             onClick={() => setActiveImage(idx)}
                                         />
                                     </motion.div>
                                 ))}
-                            </div>
+                            </motion.div>
 
-                            {/* Декоративные элементы строительства */}
-                            <div className="absolute -top-4 -left-4 w-10 h-10 bg-yellow-400 rounded-full opacity-20"></div>
-                            <div className="absolute -bottom-4 -right-4 w-12 h-12 rotate-45 bg-blue-400 opacity-20"></div>
+                            {/* Анимированные декоративные элементы */}
+                            <motion.div
+                                className="absolute -top-4 -left-4 w-10 h-10 bg-yellow-400 rounded-full opacity-20"
+                                animate={{
+                                    scale: [1, 1.2, 1],
+                                    rotate: [0, 180, 360]
+                                }}
+                                transition={{
+                                    duration: 10,
+                                    repeat: Infinity,
+                                    ease: "linear"
+                                }}
+                            />
+                            <motion.div
+                                className="absolute -bottom-4 -right-4 w-12 h-12 rotate-45 bg-blue-400 opacity-20"
+                                animate={{
+                                    y: [0, -10, 0],
+                                    rotate: [45, 90, 135, 180, 225, 270, 315, 360, 45]
+                                }}
+                                transition={{
+                                    duration: 15,
+                                    repeat: Infinity,
+                                    ease: "linear"
+                                }}
+                            />
                         </div>
-                    </div>
+                    </motion.div>
 
-                    {/* Описание проекта */}
-                    <div className="md:w-1/2 flex flex-col justify-center">
-                        <div className="flex items-center mb-2">
-                            <div className={`w-8 h-1 ${accentColor} `}></div>
+                    {/* Описание проекта с анимациями */}
+                    <motion.div
+                        className="md:w-1/2 flex flex-col justify-center"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        viewport={{ once: true }}
+                    >
+                        <motion.div
+                            className="flex items-center mb-2"
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.4 }}
+                            viewport={{ once: true }}
+                        >
+                            <div className={`w-8 h-1 ${accentColor}`}></div>
                             <span className="text-sm font-semibold tracking-widest uppercase">Проект #{project.id}</span>
-                        </div>
+                        </motion.div>
 
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">{project.title}</h2>
+                        <motion.h2
+                            className="text-3xl md:text-4xl font-bold mb-4"
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.5 }}
+                            viewport={{ once: true }}
+                        >
+                            {project.title}
+                        </motion.h2>
 
-                        <div className="flex flex-wrap gap-4 mb-6">
+                        <motion.div
+                            className="flex flex-wrap gap-4 mb-6"
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.6 }}
+                            viewport={{ once: true }}
+                        >
                             <div className="flex items-center">
                                 <svg className="w-5 h-5 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -123,9 +199,6 @@ const ProjectCard = ({ project, index }) => {
                             </div>
 
                             <div className="flex items-center">
-                                {/*<svg className="w-5 h-5 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">*/}
-                                {/*    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 0h-4m4 0l-5-5" />*/}
-                                {/*</svg>*/}
                                 <Image
                                     alt="площадь"
                                     src={index % 2 === 0 ? '/arrow_area_icon_dark.svg' : '/arrow_area_icon_light.svg'}
@@ -142,53 +215,57 @@ const ProjectCard = ({ project, index }) => {
                                 </svg>
                                 <span>{project.duration}</span>
                             </div>
-                        </div>
+                        </motion.div>
 
-                        <p className="mb-6 text-lg opacity-90">{project.description}</p>
+                        <motion.p
+                            className="mb-6 text-lg opacity-90"
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.7 }}
+                            viewport={{ once: true }}
+                        >
+                            {project.description}
+                        </motion.p>
 
-                        <div className="mb-8">
+                        <motion.div
+                            className="mb-8"
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.8 }}
+                            viewport={{ once: true }}
+                        >
                             <h3 className={`text-xl font-semibold mb-3 ${accentColor}`}>Особенности проекта:</h3>
                             <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                                 {project.features.map((feature, idx) => (
-                                    <li key={idx} className="flex items-start">
+                                    <motion.li
+                                        key={idx}
+                                        className="flex items-start"
+                                        initial={{ opacity: 0, x: 10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.1 * idx + 0.9 }}
+                                        viewport={{ once: true }}
+                                    >
                                         <svg className={`w-5 h-5 mr-2 flex-shrink-0 ${accentColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                         </svg>
                                         <span>{feature}</span>
-                                    </li>
+                                    </motion.li>
                                 ))}
                             </ul>
-                        </div>
-
-                        {/*<div className="flex space-x-4">*/}
-                        {/*    <button className={`${buttonStyle} px-6 py-3 rounded-lg font-medium transition-colors flex items-center`}>*/}
-                        {/*        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">*/}
-                        {/*            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />*/}
-                        {/*        </svg>*/}
-                        {/*        В закладки*/}
-                        {/*    </button>*/}
-
-                        {/*    <button className="border border-gray-500 px-6 py-3 rounded-lg font-medium transition-colors hover:bg-gray-500 hover:bg-opacity-10 flex items-center">*/}
-                        {/*        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">*/}
-                        {/*            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />*/}
-                        {/*        </svg>*/}
-                        {/*        Поделиться*/}
-                        {/*    </button>*/}
-                        {/*</div>*/}
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
 const ProjectsPage = () => {
     return (
         <div className="min-h-screen">
-            {/* Шапка страницы */}
-            {/* Шапка страницы с анимациями как во втором блоке */}
+            {/* Анимированная шапка страницы */}
             <header className="relative py-20 bg-gradient-to-r from-blue-800 to-blue-600 text-white text-center overflow-hidden">
-                {/* Анимированные геометрические фигуры */}
+                {/* Анимированные фоновые элементы */}
                 <motion.div
                     className="absolute top-0 left-0 w-32 h-32 bg-blue-400 rounded-full opacity-10"
                     animate={{
@@ -232,31 +309,81 @@ const ProjectsPage = () => {
                 />
 
                 <div className="container mx-auto px-4 max-w-4xl relative z-10">
-                    <div className="flex justify-center mb-6 mt-12">
-                        <div className="w-12 h-1 bg-blue-300"></div>
-                    </div>
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6">Наши проекты</h1>
-                    <p className="text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
-                        Реализованные работы по ремонту и отделке квартир. Каждый проект - уникальное решение с вниманием к деталям.
-                    </p>
+                    <motion.div
+                        initial={{ opacity: 0, scaleX: 0 }}
+                        animate={{ opacity: 1, scaleX: 1 }}
+                        transition={{ duration: 0.8, type: 'spring' }}
+                        className="flex justify-center mb-8"
+                    >
+                        <div className="w-16 h-1 bg-blue-300 rounded-full" />
+                    </motion.div>
 
-                    {/* Декоративные элементы */}
-                    <div className="absolute bottom-10 left-10 w-10 h-10 rotate-45 bg-white opacity-10"></div>
-                    <div className="absolute top-10 right-10 w-12 h-12 rounded-full bg-white opacity-10"></div>
+                    <motion.h1
+                        className="text-4xl md:text-6xl font-bold mb-6"
+                        initial={{ opacity: 0, y: -30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2, type: 'spring' }}
+                    >
+                        Наши проекты
+                    </motion.h1>
+
+                    <motion.p
+                        className="text-xl md:text-2xl max-w-3xl mx-auto opacity-90"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                    >
+                        Реализованные работы по ремонту и отделке квартир. Каждый проект - уникальное решение с вниманием к деталям.
+                    </motion.p>
+
+                    {/* Анимированные декоративные элементы */}
+                    <motion.div
+                        className="absolute bottom-10 left-10 w-10 h-10 rotate-45 bg-white opacity-10"
+                        animate={{
+                            scale: [1, 1.2, 1],
+                            rotate: [45, 90, 135, 180, 225, 270, 315, 360, 45]
+                        }}
+                        transition={{
+                            duration: 15,
+                            repeat: Infinity,
+                            ease: "linear"
+                        }}
+                    />
+                    <motion.div
+                        className="absolute top-10 right-10 w-12 h-12 rounded-full bg-white opacity-10"
+                        animate={{
+                            y: [0, -10, 0],
+                            scale: [1, 1.1, 1]
+                        }}
+                        transition={{
+                            duration: 8,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    />
                 </div>
             </header>
 
-
-            {/* Список проектов */}
-            <div className="">
+            {/* Список проектов с анимациями появления */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+            >
                 {projects.map((project, index) => (
                     <ProjectCard key={project.id} project={project} index={index} />
                 ))}
-            </div>
+            </motion.div>
 
-            {/* Призыв к действию */}
-            <div className="relative py-20 bg-gradient-to-r from-blue-800 to-blue-600 text-white text-center overflow-hidden">
-                {/* Анимированные геометрические фигуры */}
+            {/* Анимированный блок CTA */}
+            <motion.div
+                className="relative py-20 bg-gradient-to-r from-blue-800 to-blue-600 text-white text-center overflow-hidden"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true, margin: "-100px" }}
+            >
+                {/* Анимированные фоновые элементы */}
                 <motion.div
                     className="absolute top-0 left-0 w-32 h-32 bg-blue-400 rounded-full opacity-10"
                     animate={{
@@ -300,19 +427,36 @@ const ProjectsPage = () => {
                 />
 
                 <div className="container mx-auto px-4 max-w-4xl relative z-10">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-6">Готовы создать свой идеальный интерьер?</h2>
-                    <p className="text-xl mb-8 max-w-2xl mx-auto">
+                    <motion.h2
+                        className="text-3xl md:text-4xl font-bold mb-6"
+                        initial={{ opacity: 0, y: -20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        viewport={{ once: true }}
+                    >
+                        Готовы создать свой идеальный интерьер?
+                    </motion.h2>
+
+                    <motion.p
+                        className="text-xl mb-8 max-w-2xl mx-auto"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        viewport={{ once: true }}
+                    >
                         Оставьте заявку и получите бесплатную консультацию от нашего дизайнера
-                    </p>
+                    </motion.p>
 
                     <motion.button
                         className="relative bg-white text-blue-800 px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition-colors overflow-hidden"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        viewport={{ once: true }}
                     >
                         <span className="relative z-10">Обсудить проект</span>
-
-                        {/* Анимация переливания внутри кнопки */}
                         <motion.div
                             className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-white/20 to-blue-400/20"
                             animate={{
@@ -326,11 +470,33 @@ const ProjectsPage = () => {
                         />
                     </motion.button>
 
-                    {/* Декоративные элементы */}
-                    <div className="absolute bottom-10 left-10 w-10 h-10 rotate-45 bg-white opacity-10"></div>
-                    <div className="absolute top-10 right-10 w-12 h-12 rounded-full bg-white opacity-10"></div>
+                    {/* Анимированные декоративные элементы */}
+                    <motion.div
+                        className="absolute bottom-10 left-10 w-10 h-10 rotate-45 bg-white opacity-10"
+                        animate={{
+                            scale: [1, 1.2, 1],
+                            rotate: [45, 90, 135, 180, 225, 270, 315, 360, 45]
+                        }}
+                        transition={{
+                            duration: 15,
+                            repeat: Infinity,
+                            ease: "linear"
+                        }}
+                    />
+                    <motion.div
+                        className="absolute top-10 right-10 w-12 h-12 rounded-full bg-white opacity-10"
+                        animate={{
+                            y: [0, -10, 0],
+                            scale: [1, 1.1, 1]
+                        }}
+                        transition={{
+                            duration: 8,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    />
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 };
