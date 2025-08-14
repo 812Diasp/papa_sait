@@ -1,5 +1,5 @@
 import React from 'react';
-import {FaInstagram, FaPhone, FaWhatsapp} from 'react-icons/fa';
+import { FaTelegramPlane, FaPhone } from 'react-icons/fa';
 import Link from "next/link";
 
 const Footer = () => {
@@ -11,9 +11,9 @@ const Footer = () => {
                     <h2 className="text-3xl font-bold text-white mb-4">ОтделкаСтав.ру</h2>
                     <h3 className="text-sm font-semibold text-white mb-2">О нас</h3>
                     <p className="text-sm text-gray-400 leading-relaxed">
-                        Мы профессионально отделываем квартиры и дома и даже бани.
-                        Наша работа - сочетание професионализма, надежности и доступности.
-                        Закажите у нас долговечный и профессиональный ремонт и получите опыт мастеров и лучшее качество за обьективную и разумную цену.
+                        Мы профессионально отделываем квартиры, дома и бани.
+                        Наша работа — это сочетание профессионализма, надёжности и доступности.
+                        Закажите у нас долговечный ремонт и получите лучшее качество по честной цене.
                     </p>
                 </div>
 
@@ -21,28 +21,55 @@ const Footer = () => {
                 <div>
                     <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Навигация</h3>
                     <ul className="space-y-2 text-sm">
-                        <li><Link href={'/pages/projects'} className="hover:text-white transition">Проекты</Link></li>
-                        <li><a href="#" className="hover:text-white transition">Как мы работаем</a></li>
-                        <li><a href="#" className="hover:text-white transition">Прайс-лист</a></li>
-                        <li><Link href={'/pages/contact'}  className="hover:text-white transition">Контакты</Link></li>
+                        <li>
+                            <Link href="/pages/projects" className="hover:text-white hover:underline underline-offset-4 transition">
+                                Проекты
+                            </Link>
+                        </li>
+                        <li>
+                            <a href="#" className="hover:text-white hover:underline underline-offset-4 transition">
+                                Как мы работаем
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="hover:text-white hover:underline underline-offset-4 transition">
+                                Прайс-лист
+                            </a>
+                        </li>
+                        <li>
+                            <Link href="/pages/contact" className="hover:text-white hover:underline underline-offset-4 transition">
+                                Контакты
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/pages/legal" className="hover:text-white hover:underline underline-offset-4 transition">
+                                Юридическая информация
+                            </Link>
+                        </li>
                     </ul>
                 </div>
 
-                {/* Блок: Соцсети */}
+
+                {/* Блок: Контакты и соцсети */}
                 <div>
-                    <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Подпишитесь на нас и посоветуйте нас знакомым за скидку 10%</h3>
+                    <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
+                        Подпишитесь на нас и получите скидку 10%
+                    </h3>
                     <ul className="space-y-3 text-sm">
                         <li className="flex items-center space-x-3">
-                            <FaInstagram className="text-white" />
-                            <span>@stav_otdelka</span>
+                            <FaTelegramPlane className="text-blue-400 hover:text-blue-500 transition" size={20} />
+                            <a
+                                href="https://t.me/stav_otdelka"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-white transition"
+                            >
+                                @stav_otdelka
+                            </a>
                         </li>
                         <li className="flex items-center space-x-3">
-                            <FaWhatsapp className="text-white" />
-                            <span>@stav_otdelka</span>
-                        </li>
-                        <li className="flex items-center space-x-3">
-                            <FaPhone className="text-white" />
-                            <a href="tel:+79991234567" className="hover:text-gray-400 transition-colors text-blue-600">
+                            <FaPhone className="text-green-400 hover:text-green-500 transition" size={18} />
+                            <a href="tel:+79991234567" className="hover:text-white transition">
                                 +7 (999) 123-45-67
                             </a>
                         </li>
@@ -52,7 +79,7 @@ const Footer = () => {
 
             {/* Нижняя строка */}
             <div className="mt-12 border-t border-gray-700 pt-6 text-xs text-gray-500 text-center">
-                © 2025 ОтделкаСтав.ру. Права защищены.
+                © 2025 <span className="text-white">ОтделкаСтав.ру</span>. Все права защищены.
             </div>
         </footer>
     );

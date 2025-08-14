@@ -105,7 +105,7 @@ const PriceListSection = () => {
     return (
         <motion.section
             ref={ref}
-            className="relative py-20 bg-gradient-to-b from-blue-900 to-black text-white overflow-hidden"
+            className="relative py-20 bg-gradient-to-b from-blue-600 to-black text-white overflow-hidden"
             id="price"
         >
             {/* Анимированные декоративные элементы */}
@@ -186,42 +186,28 @@ const PriceListSection = () => {
                     </motion.div>
 
                     {/* Десктопная таблица */}
+                    {/* Десктопная таблица */}
                     <motion.div
                         variants={itemVariants}
-                        className="hidden md:block overflow-hidden shadow-2xl rounded-2xl border border-white/20 bg-gradient-to-b from-blue-800/50 to-blue-900/50 backdrop-blur-sm"
+                        className="hidden md:block overflow-hidden shadow-xl rounded-2xl border border-gray-200 bg-white backdrop-blur-sm"
                     >
                         <table className="w-full table-auto">
-                            <thead className="border-b border-white/20 text-sm leading-normal">
-                            <tr className="text-white">
+                            <thead className="border-b border-gray-200 text-sm leading-normal bg-blue-100/50">
+                            <tr className="text-gray-800">
                                 <th className="py-5 px-8 text-left font-semibold">Наименование работ</th>
-                                <th className="py-5 px-8 text-center font-semibold">
-                                    <div className="flex items-center justify-center gap-2">
-                                        Базовый
-                                        <Image src="/home_base_icon.svg" width={24} height={24} alt="Базовый" className="filter brightness-0 invert" />
-                                    </div>
-                                </th>
-                                <th className="py-5 px-8 text-center font-semibold">
-                                    <div className="flex items-center justify-center gap-2">
-                                        Средний
-                                        <Image src="/home_middle_icon.svg" width={24} height={24} alt="Средний" className="filter brightness-0 invert" />
-                                    </div>
-                                </th>
-                                <th className="py-5 px-8 text-center font-semibold">
-                                    <div className="flex items-center justify-center gap-2">
-                                        Элитный
-                                        <Image src="/home_elite_icon.svg" width={24} height={24} alt="Элитный" className="filter brightness-0 invert" />
-                                    </div>
-                                </th>
+                                <th className="py-5 px-8 text-center font-semibold">Базовый</th>
+                                <th className="py-5 px-8 text-center font-semibold">Средний</th>
+                                <th className="py-5 px-8 text-center font-semibold">Элитный</th>
                             </tr>
                             </thead>
-                            <tbody className="text-sm text-white/80 divide-y divide-white/20">
+                            <tbody className="text-sm text-gray-700 divide-y divide-gray-200">
                             {services.map((row, index) => (
                                 <motion.tr
                                     key={index}
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: index * 0.05 + 0.3 }}
-                                    className="hover:bg-white/5"
+                                    className="hover:bg-blue-50"
                                 >
                                     <td className="py-4 px-8 font-medium">{row.feature}</td>
                                     <td className="py-4 px-8 text-center">{row.basic}</td>
@@ -230,12 +216,12 @@ const PriceListSection = () => {
                                 </motion.tr>
                             ))}
                             </tbody>
-                            <tfoot className="border-t border-white/20 text-sm font-semibold">
-                            <tr className="text-white">
+                            <tfoot className="border-t border-gray-200 text-sm font-semibold bg-blue-50">
+                            <tr className="text-gray-900">
                                 <td className="py-5 px-8">Цена за м²</td>
-                                <td className="py-5 px-8 text-center text-blue-300">11 000 ₽</td>
-                                <td className="py-5 px-8 text-center text-blue-300">20 000 ₽</td>
-                                <td className="py-5 px-8 text-center text-blue-300">30 000 ₽</td>
+                                <td className="py-5 px-8 text-center text-blue-600">11 000 ₽</td>
+                                <td className="py-5 px-8 text-center text-blue-600">20 000 ₽</td>
+                                <td className="py-5 px-8 text-center text-blue-600">30 000 ₽</td>
                             </tr>
                             </tfoot>
                         </table>
@@ -250,15 +236,15 @@ const PriceListSection = () => {
                             <motion.div
                                 key={index}
                                 variants={itemVariants}
-                                className="bg-white/10 p-5 rounded-xl border border-white/20 hover:border-blue-400/30 transition-colors backdrop-blur-sm"
+                                className="bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-300 transition-colors shadow-sm"
                             >
-                                <h3 className="font-semibold text-white mb-2">{row.feature}</h3>
-                                <p className="text-white/80">{row[activeTab]}</p>
+                                <h3 className="font-semibold text-gray-900 mb-2">{row.feature}</h3>
+                                <p className="text-gray-700">{row[activeTab]}</p>
                             </motion.div>
                         ))}
                         <motion.div
                             variants={itemVariants}
-                            className="bg-gradient-to-r from-blue-600 to-blue-500 p-5 rounded-xl shadow-lg text-white"
+                            className="bg-gradient-to-r from-blue-500 to-blue-400 p-5 rounded-xl shadow-lg text-white"
                         >
                             <p className="font-medium">Цена за м²</p>
                             <p className="text-2xl font-bold mt-1">{prices[activeTab]}</p>

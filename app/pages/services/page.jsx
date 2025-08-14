@@ -8,7 +8,7 @@ const services = [
         title: "Комплексный ремонт",
         description: "Полный цикл работ от черновой отделки до финишных покрытий",
         price: "от 8 000 ₽/м²",
-        duration: "3-6 месяцев",
+        duration: "3-9 месяцев",
         features: [
             "Демонтажные работы",
             "Электрика и сантехника",
@@ -23,14 +23,12 @@ const services = [
         id: 2,
         title: "Дизайнерский ремонт",
         description: "Ремонт с разработкой дизайн-проекта и авторским надзором",
-        price: "от 12 000 ₽/м²",
-        duration: "4-8 месяцев",
+        price: "от 15 000 ₽/м²",
+        duration: "4-12 месяцев",
         features: [
             "Разработка индивидуального дизайн-проекта",
             "Комплексный ремонт премиум-класса",
-            "Использование эксклюзивных материалов",
-            "Авторский надзор",
-            "3D-визуализация",
+            "Использование качественных и интересных материалов",
             "Подбор мебели и декора"
         ],
         image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
@@ -49,24 +47,21 @@ const services = [
             "Покраска потолков",
             "Установка плинтусов"
         ],
-        image: "https://images.unsplash.com/photo-1583845112269-455bf9de0ff6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
-    },
+        image: "https://frankfurt.apollo.olxcdn.com/v1/files/o7vr6triv79d1-KZ/image;s=1600x800"},
     {
         id: 4,
         title: "Отделка ванных комнат",
         description: "Качественная отделка санузлов под ключ",
         price: "от 15 000 ₽/м²",
-        duration: "3-5 недель",
+        duration: "3-6 недель",
         features: [
             "Гидроизоляция",
             "Укладка плитки",
             "Установка сантехники",
             "Монтаж теплого пола",
-            "Подвесные потолки",
             "Стеклянные перегородки"
         ],
-        image: "https://images.unsplash.com/photo-1600566752225-3f2b1d1b1b1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
-    },
+        image: '/otdelka/photo-bathrom.png'},
     {
         id: 5,
         title: "Отделка кухни",
@@ -78,8 +73,7 @@ const services = [
             "Подвесные потолки",
             "Укладка напольных покрытий",
             "Монтаж кухонного гарнитура",
-            "Освещение рабочей зоны",
-            "Вентиляционные системы"
+            "Освещение рабочей зоны"
         ],
         image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
     },
@@ -88,16 +82,14 @@ const services = [
         title: "Элитная отделка",
         description: "Премиальная отделка с использованием люксовых материалов",
         price: "от 25 000 ₽/м²",
-        duration: "6-12 месяцев",
+        duration: "6-16 месяцев",
         features: [
             "Эксклюзивные материалы",
-            "Ручная работа мастеров",
             "Итальянская сантехника",
             "Натуральный камень",
-            "Дизайнерские обои",
-            "Умные системы"
+            "Дизайнерские обои"
         ],
-        image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+        image: "/otdelka/photo_2025-08-14_10-05-02.jpg"
     }
 ];
 

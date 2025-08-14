@@ -218,10 +218,14 @@ const AdvantagesSection = () => {
                             initial="enter"
                             animate="center"
                             exit="exit"
-                            className="absolute w-full max-w-3xl p-6 md:p-12 rounded-2xl bg-gray-800/80 backdrop-blur-sm border border-gray-700 shadow-2xl"
+                            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                   max-w-4xl w-full h-[360px] md:h-[320px]
+                   p-6 md:p-12 rounded-2xl
+                   bg-gray-800/80 backdrop-blur-sm border border-gray-700 shadow-2xl
+                   flex items-center justify-center"
                         >
-                            <div className="flex flex-col items-center text-center space-y-4 md:space-y-6">
-                                <div className="p-4 bg-blue-500/10 rounded-full mb-2 md:mb-4 glow">
+                            <div className="flex flex-col items-center text-center space-y-4 md:space-y-6 w-full">
+                                <div className="p-4 bg-blue-500/10 rounded-full mb-2 md:mb-4 glow flex-shrink-0">
                                     {advantages[current].icon}
                                 </div>
                                 <h3 className="text-xl md:text-3xl font-bold">{advantages[current].title}</h3>
@@ -229,6 +233,7 @@ const AdvantagesSection = () => {
                             </div>
                         </motion.div>
                     </AnimatePresence>
+
 
                     <button
                         onClick={() => changeSlide('prev')}
