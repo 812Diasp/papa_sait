@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 const projects = [
     {
@@ -86,12 +85,12 @@ const ProjectCard = ({ project, index }) => {
                                 transition={{ duration: 0.5 }}
                                 className="relative h-80 md:h-96"
                             >
-                                <Image
+                                <img
                                     src={project.images[activeImage]}
                                     alt={project.title}
-                                    fill
+
                                     className="object-cover rounded-xl shadow-xl"
-                                    priority={index === 0}
+
                                 />
                             </motion.div>
 
@@ -112,7 +111,7 @@ const ProjectCard = ({ project, index }) => {
                                         animate={{ opacity: 1, scale: 1 }}
                                         transition={{ delay: 0.1 * idx }}
                                     >
-                                        <Image
+                                        <img
                                             src={img}
                                             alt={`Thumbnail ${idx}`}
                                             width={64}
@@ -199,7 +198,7 @@ const ProjectCard = ({ project, index }) => {
                             </div>
 
                             <div className="flex items-center">
-                                <Image
+                                <img
                                     alt="площадь"
                                     src={index % 2 === 0 ? '/arrow_area_icon_dark.svg' : '/arrow_area_icon_light.svg'}
                                     className="mr-2"

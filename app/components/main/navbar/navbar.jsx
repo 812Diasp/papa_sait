@@ -49,11 +49,14 @@ const Navbar = () => {
                         >
                             Контакты
                         </Link>
+
                         <a
                             href="tel:+71234567890"
-                            className="ml-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 shadow-sm"
+                            className="ml-4 shadow-sm"
                         >
+                        <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold shadow-md transition transform hover:-translate-y-1 hover:shadow-lg">
                             +7 (123) 456-78-90
+                        </button>
                         </a>
                     </div>
 

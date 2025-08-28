@@ -98,3 +98,14 @@ button{
   background-size: 200% 200%;
   animation: gradient 3s ease infinite;
 }
+
+
+.text-gradient-blue { background: linear-gradient(45deg, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.text-gradient-purple { background: linear-gradient(45deg, #8b5cf6, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.text-gradient-yellow { background: linear-gradient(45deg, #facc15, #fcd34d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.text-gradient-orange { background: linear-gradient(45deg, #f97316, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.text-gradient-cyan { background: linear-gradient(45deg, #06b6d4, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.text-gradient-pink { background: linear-gradient(45deg, #ec4899, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.text-gradient-green { background: linear-gradient(45deg, #22c55e, #4ade80); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.text-gradient-darkgreen { background: linear-gradient(45deg, #166534, #15803d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+svg { stroke-width: 0.8; }
