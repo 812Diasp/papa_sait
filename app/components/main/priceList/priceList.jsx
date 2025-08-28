@@ -105,35 +105,35 @@ const PriceListSection = () => {
     return (
         <motion.section
             ref={ref}
-            className="relative py-20 bg-gradient-to-b from-blue-600 to-black text-white overflow-hidden"
+            className="relative py-20 bg-gradient-to-b from-gray-50 to-gray-100 text-gray-900 overflow-hidden"
             id="price"
         >
             {/* Анимированные декоративные элементы */}
             <motion.div
-                className="absolute top-0 left-0 w-32 h-32 bg-blue-400 rounded-full opacity-10"
+                className="absolute top-0 left-0 w-32 h-32 bg-blue-500 rounded-full opacity-10"
                 animate={{
                     x: [0, 100, 0],
                     y: [0, 50, 0],
-                    rotate: [0, 180, 360]
+                    rotate: [0, 180, 360],
                 }}
                 transition={{
                     duration: 15,
                     repeat: Infinity,
-                    ease: "linear"
+                    ease: "linear",
                 }}
             />
 
             <motion.div
-                className="absolute bottom-0 right-0 w-40 h-40 bg-white opacity-10 rotate-45"
+                className="absolute bottom-0 right-0 w-40 h-40 bg-gray-400 opacity-10 rotate-45"
                 animate={{
                     x: [0, -80, 0],
                     y: [0, -60, 0],
-                    scale: [1, 1.2, 1]
+                    scale: [1, 1.2, 1],
                 }}
                 transition={{
                     duration: 18,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                 }}
             />
 
@@ -146,16 +146,22 @@ const PriceListSection = () => {
                     {/* Заголовок */}
                     <div className="text-center mb-16">
                         <motion.div variants={itemVariants} className="flex justify-center mb-6">
-                            <div className="w-12 h-1 bg-blue-400"></div>
+                            <div className="w-12 h-1 bg-blue-500"></div>
                         </motion.div>
-                        <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold mb-6">
-                            Стоимость{' '}
-                            <span className="inline-flex items-center gap-2 relative">
-                                ремонта
-                                <AnimatedToolIcon />
-                            </span>
+                        <motion.h2
+                            variants={itemVariants}
+                            className="text-4xl md:text-6xl font-bold mb-6 text-gray-900"
+                        >
+                            Стоимость{" "}
+                            <span className="inline-flex items-center gap-2 relative text-blue-500">
+            ремонта
+            <AnimatedToolIcon />
+          </span>
                         </motion.h2>
-                        <motion.p variants={itemVariants} className="text-xl md:text-2xl max-w-2xl mx-auto opacity-90">
+                        <motion.p
+                            variants={itemVariants}
+                            className="text-xl md:text-2xl max-w-2xl mx-auto text-gray-600"
+                        >
                             Выберите подходящий вариант ремонта для вашего дома
                         </motion.p>
                     </div>
@@ -163,38 +169,39 @@ const PriceListSection = () => {
                     {/* Мобильные табы */}
                     <motion.div
                         variants={containerVariants}
-                        className="md:hidden mb-8 bg-white/10 p-1 rounded-xl backdrop-blur-sm border border-white/20"
+                        className="md:hidden mb-8 bg-gray-100 p-1 rounded-xl border border-gray-300"
                     >
                         <div className="flex">
-                            {['basic', 'medium', 'premium'].map((tab) => (
+                            {["basic", "medium", "premium"].map((tab) => (
                                 <motion.button
                                     key={tab}
                                     variants={tabVariants}
                                     onClick={() => setActiveTab(tab)}
                                     className={`flex-1 py-3 px-2 font-medium text-sm rounded-lg transition-colors ${
                                         activeTab === tab
-                                            ? 'bg-blue-600 text-white shadow-md'
-                                            : 'text-white/80 hover:text-white'
+                                            ? "bg-blue-500 text-white shadow-md"
+                                            : "text-gray-700 hover:text-sky-600"
                                     }`}
                                 >
-                                    {tab === 'basic' && 'Базовый'}
-                                    {tab === 'medium' && 'Средний'}
-                                    {tab === 'premium' && 'Элитный'}
+                                    {tab === "basic" && "Базовый"}
+                                    {tab === "medium" && "Средний"}
+                                    {tab === "premium" && "Элитный"}
                                 </motion.button>
                             ))}
                         </div>
                     </motion.div>
 
                     {/* Десктопная таблица */}
-                    {/* Десктопная таблица */}
                     <motion.div
                         variants={itemVariants}
-                        className="hidden md:block overflow-hidden shadow-xl rounded-2xl border border-gray-200 bg-white backdrop-blur-sm"
+                        className="hidden md:block overflow-hidden shadow-xl rounded-2xl border border-gray-200 bg-white"
                     >
                         <table className="w-full table-auto">
-                            <thead className="border-b border-gray-200 text-sm leading-normal bg-blue-100/50">
+                            <thead className="border-b border-gray-200 text-sm leading-normal bg-gray-50">
                             <tr className="text-gray-800">
-                                <th className="py-5 px-8 text-left font-semibold">Наименование работ</th>
+                                <th className="py-5 px-8 text-left font-semibold">
+                                    Наименование работ
+                                </th>
                                 <th className="py-5 px-8 text-center font-semibold">Базовый</th>
                                 <th className="py-5 px-8 text-center font-semibold">Средний</th>
                                 <th className="py-5 px-8 text-center font-semibold">Элитный</th>
@@ -207,7 +214,7 @@ const PriceListSection = () => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: index * 0.05 + 0.3 }}
-                                    className="hover:bg-blue-50"
+                                    className="hover:bg-sky-50"
                                 >
                                     <td className="py-4 px-8 font-medium">{row.feature}</td>
                                     <td className="py-4 px-8 text-center">{row.basic}</td>
@@ -216,27 +223,24 @@ const PriceListSection = () => {
                                 </motion.tr>
                             ))}
                             </tbody>
-                            <tfoot className="border-t border-gray-200 text-sm font-semibold bg-blue-50">
+                            <tfoot className="border-t border-gray-200 text-sm font-semibold bg-gray-50">
                             <tr className="text-gray-900">
                                 <td className="py-5 px-8">Цена за м²</td>
-                                <td className="py-5 px-8 text-center text-blue-600">11 000 ₽</td>
-                                <td className="py-5 px-8 text-center text-blue-600">20 000 ₽</td>
-                                <td className="py-5 px-8 text-center text-blue-600">30 000 ₽</td>
+                                <td className="py-5 px-8 text-center text-blue-500">11 000 ₽</td>
+                                <td className="py-5 px-8 text-center text-blue-500">20 000 ₽</td>
+                                <td className="py-5 px-8 text-center text-blue-500">30 000 ₽</td>
                             </tr>
                             </tfoot>
                         </table>
                     </motion.div>
 
                     {/* Мобильные карточки */}
-                    <motion.div
-                        variants={containerVariants}
-                        className="md:hidden space-y-4"
-                    >
+                    <motion.div variants={containerVariants} className="md:hidden space-y-4">
                         {services.map((row, index) => (
                             <motion.div
                                 key={index}
                                 variants={itemVariants}
-                                className="bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-300 transition-colors shadow-sm"
+                                className="bg-white p-5 rounded-xl border border-gray-200 hover:border-sky-400 transition-colors shadow-sm"
                             >
                                 <h3 className="font-semibold text-gray-900 mb-2">{row.feature}</h3>
                                 <p className="text-gray-700">{row[activeTab]}</p>
@@ -244,7 +248,7 @@ const PriceListSection = () => {
                         ))}
                         <motion.div
                             variants={itemVariants}
-                            className="bg-gradient-to-r from-blue-500 to-blue-400 p-5 rounded-xl shadow-lg text-white"
+                            className="bg-gradient-to-r from-blue-500 to-sky-600 p-5 rounded-xl shadow-lg text-white"
                         >
                             <p className="font-medium">Цена за м²</p>
                             <p className="text-2xl font-bold mt-1">{prices[activeTab]}</p>
@@ -252,25 +256,22 @@ const PriceListSection = () => {
                     </motion.div>
 
                     {/* Кнопка CTA */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="mt-12 text-center"
-                    >
+                    <motion.div variants={itemVariants} className="mt-12 text-center">
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="relative bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all overflow-hidden"
+                            className="relative bg-gradient-to-r from-blue-500 to-sky-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all overflow-hidden"
                         >
                             <span className="relative z-10">Заказать расчет</span>
                             <motion.div
-                                className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-white/20 to-blue-400/20"
+                                className="absolute inset-0 bg-gradient-to-r from-sky-400/20 via-white/20 to-sky-400/20"
                                 animate={{
-                                    x: ['-100%', '100%']
+                                    x: ["-100%", "100%"],
                                 }}
                                 transition={{
                                     duration: 4,
                                     repeat: Infinity,
-                                    ease: "linear"
+                                    ease: "linear",
                                 }}
                             />
                         </motion.button>
@@ -278,6 +279,7 @@ const PriceListSection = () => {
                 </motion.div>
             </div>
         </motion.section>
+
     );
 };
 
