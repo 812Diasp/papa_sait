@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Insprite = () => {
+export const Insprite = () => {
     return (
         <section className="bg-white">
             <div

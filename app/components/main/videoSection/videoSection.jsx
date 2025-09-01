@@ -5,7 +5,7 @@ import { Dialog } from '@headlessui/react';
 import { motion } from 'framer-motion';
 import { FaPlay } from 'react-icons/fa';
 
-const IntroVideoSection = () => {
+const VideoSection = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -67,4 +67,4 @@ const IntroVideoSection = () => {
     );
 };
 
-export default IntroVideoSection;
+export default VideoSection;

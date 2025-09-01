@@ -1,9 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Footer from "@/app/components/footer/footer";
 import Navbar from "@/app/components/main/navbar/navbar";
 import FloatingPhoneCTA from "@/app/components/main/FloatingPhoneCTA/FloatingPhoneCTA";
-import useSmoothScroll from '/components/smoothScroll/SmoothScroll'
+import Footer from "@/app/components/main/footer/footer";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -20,12 +20,11 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-    const containerRef = useSmoothScroll()
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        ref={containerRef}
       >
       <Navbar></Navbar>
       <FloatingPhoneCTA></FloatingPhoneCTA>
